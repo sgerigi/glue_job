@@ -175,4 +175,7 @@ else:
 
 data_read(S3_SOURCE_PATH, TEMP_VIEW_NAME)
 build_reports(SQL_QUERY, JOB_NAME, S3_STAGE_PATH, S3_BUCKET)
+
+# testing git comments
+
 job.commit()

@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Glue Job Deployment Template
+
+Parameters:
+  JobName:
+    Type: String
+  ScriptBucket:
+    Type: String
+  ScriptKey:
+    Type: String
+  TempBucket:
+    Type: String
+  GlueRoleArn:
+    Type: String
+  Environment:
+    Type: String
+
+Resources:
+  GlueJob:
+    Type: AWS::Glue::Job
+    Properties:
+      Name: !Ref JobName
+      Role: !Ref GlueRoleArn
+      Command:
+        Name: glueetl
+        ScriptLocation: !Sub "s3://${ScriptBucket}/${ScriptKey}"
+        PythonVersion: "3"
+      DefaultArguments:
+        "--job-bookmark-option": "job-bookmark-disable"
+        "--TempDir": !Sub "s3://${TempBucket}/temp/"
+        "--environment": !Ref Environment
+      GlueVersion: "4.0"
+      ExecutionProperty:
+        MaxConcurrentRuns: 1
+      MaxRetries: 1
+      Timeout: 30
+      WorkerType: G.1X
+      NumberOfWorkers: 2

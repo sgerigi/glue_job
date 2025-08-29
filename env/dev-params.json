@@ -1,0 +1,8 @@
+[
+  {"ParameterKey": "JobName", "ParameterValue": "my-glue-job-dev"},
+  {"ParameterKey": "ScriptBucket", "ParameterValue": "my-dev-s3-bucket"},
+  {"ParameterKey": "ScriptKey", "ParameterValue": "scripts/my_glue_job.py"},
+  {"ParameterKey": "TempBucket", "ParameterValue": "my-dev-temp-bucket"},
+  {"ParameterKey": "GlueRoleArn", "ParameterValue": "arn:aws:iam::111111111111:role/AWSGlueServiceRole"},
+  {"ParameterKey": "Environment", "ParameterValue": "dev"}
+]
